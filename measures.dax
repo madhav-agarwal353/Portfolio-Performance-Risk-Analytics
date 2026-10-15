@@ -1,0 +1,15 @@
+Total Return = MAX(ts[Portfolio]) - 1
+Benchmark Return = MAX(ts[Benchmark]) - 1
+Excess Return = [Total Return] - [Benchmark Return]
+CAGR = CALCULATE(MAX(metrics[Portfolio]), metrics[metric] = "CAGR")
+Volatility = CALCULATE(MAX(metrics[Portfolio]), metrics[metric] = "Volatility")
+Sharpe = CALCULATE(MAX(metrics[Portfolio]), metrics[metric] = "Sharpe")
+Sortino = CALCULATE(MAX(metrics[Portfolio]), metrics[metric] = "Sortino")
+Max Drawdown = CALCULATE(MAX(metrics[Portfolio]), metrics[metric] = "Max Drawdown")
+Beta = CALCULATE(MAX(metrics[Portfolio]), metrics[metric] = "Beta")
+Alpha = CALCULATE(MAX(metrics[Portfolio]), metrics[metric] = "Alpha")
+VaR 95 = CALCULATE(MAX(metrics[Portfolio]), metrics[metric] = "VaR 95%")
+CVaR 95 = CALCULATE(MAX(metrics[Portfolio]), metrics[metric] = "CVaR 95%")
+Latest Run = MAXX(TOPN(1, model_runs, model_runs[run_ts], DESC), model_runs[run_id])
+Avg Pred Return = CALCULATE(AVERAGE(preds[pred_return]), preds[run_id] = [Latest Run])
+Pred Signal = IF([Avg Pred Return] > 0, "Bullish", "Bearish")
